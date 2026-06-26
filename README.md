@@ -8,6 +8,19 @@ binary, so it packages cleanly into a native ACAP.
 > Communications or the go2rtc author. go2rtc is MIT-licensed by Alexey Khit.
 > Use at your own risk.
 
+## Use case
+
+Watch the camera live in any modern browser over **WebRTC**, with sub-second
+latency and no plugin or RTSP client required. Because go2rtc converts the
+camera's RTSP into WebRTC / MSE / HLS / MJPEG on the fly, it acts as a protocol
+bridge for clients that can't speak RTSP, and it can restream a single feed to
+many viewers from the camera itself.
+
+It is also a great building block for **developing web applications**: you get a
+standards-based WebRTC/HTTP endpoint straight from the device, so you can embed
+a low-latency live view in a web app, prototype against the built-in API, and
+test players without standing up any extra streaming infrastructure.
+
 ## What you get
 
 - The full go2rtc dashboard (WebRTC / MSE / RTSP players, config editor,

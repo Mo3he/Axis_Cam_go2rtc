@@ -37,4 +37,4 @@ RUN case "${ARCH}" in \
 RUN sed -i "s/@ARCH@/${ARCH}/" manifest.json
 
 # Build the supervisor and package the .eap.
-RUN . /opt/axis/acapsdk/environment-setup* && acap-build -a go2rtc_run ./
+RUN . /opt/axis/acapsdk/environment-setup* && acap-build -a go2rtc_run -a go2rtc.yaml ./

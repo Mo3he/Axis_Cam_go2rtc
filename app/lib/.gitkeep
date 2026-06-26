@@ -1,0 +1,1 @@
+# keep the lib directory in version control even when the binary is downloaded at build time

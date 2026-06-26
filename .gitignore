@@ -1,0 +1,9 @@
+# Build output
+build_*/
+*.eap
+
+# Downloaded binary (fetched at build time)
+app/lib/go2rtc
+
+# OS noise
+.DS_Store

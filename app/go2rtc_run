@@ -1,0 +1,26 @@
+#!/bin/sh
+# go2rtc launch script — called by the supervisor binary.
+#
+# Seeds a default config into the persistent localdata dir on first run, then
+# execs the go2rtc binary. Using `exec` lets go2rtc receive signals directly so
+# the supervisor can stop it cleanly.
+
+APP_DIR="/usr/local/packages/go2rtc"
+DATA_DIR="$APP_DIR/localdata"
+BIN="$APP_DIR/lib/go2rtc"
+CONFIG="$DATA_DIR/go2rtc.yaml"
+
+mkdir -p "$DATA_DIR"
+chmod +x "$BIN" 2>/dev/null || true
+
+# Seed the default config the first time only; afterwards go2rtc owns this file
+# (it can be edited from the Web UI and is preserved across restarts).
+if [ ! -f "$CONFIG" ]; then
+    cp "$APP_DIR/go2rtc.yaml" "$CONFIG" 2>/dev/null || : > "$CONFIG"
+fi
+
+logger -t "go2rtc" "Starting go2rtc (config=$CONFIG)"
+
+# Run from the writable data dir so any runtime files land there.
+cd "$DATA_DIR" || exit 1
+exec "$BIN" -config "$CONFIG"

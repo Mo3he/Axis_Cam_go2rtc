@@ -1,0 +1,25 @@
+# go2rtc configuration for Axis cameras.
+# Full reference: https://github.com/AlexxIT/go2rtc
+#
+# This file lives in the app's persistent localdata directory and can be edited
+# directly from the go2rtc Web UI (Config tab). Changes survive app restarts and
+# are removed only when the ACAP is uninstalled.
+
+api:
+  listen: ":1984"      # Web UI / HTTP API (reachable at http://<camera-ip>:1984/)
+  # username: "admin"  # uncomment to require Basic auth for the Web UI
+  # password: "change-me"
+
+rtsp:
+  listen: ":8554"      # RTSP server (rtsp://<camera-ip>:8554/<stream>)
+
+webrtc:
+  listen: ":8555"      # WebRTC TCP/UDP
+
+# log:
+#   level: info        # trace, debug, info (default), warn, error
+
+streams:
+  # Re-publish the camera's own RTSP stream. Replace USER:PASS with a device
+  # account, then open http://<camera-ip>:1984/ to view it via WebRTC/MSE.
+  # camera: rtsp://USER:PASS@127.0.0.1:554/axis-media/media.amp

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>go2rtc</title>
+    <style>
+        :root {
+            --bg: #0f1117;
+            --surface: #181b23;
+            --border: #262a35;
+            --text: #e4e6ed;
+            --muted: #8b8fa3;
+            --green: #22c55e;
+            --accent: #3b82f6;
+            --radius: 10px;
+            --mono: 'SF Mono', SFMono-Regular, Consolas, Menlo, monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 24px;
+            font-size: 14px;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        h1 { font-size: 20px; margin-bottom: 4px; }
+        .sub { color: var(--muted); margin-bottom: 20px; }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        .card h2 { font-size: 14px; margin-bottom: 12px; }
+        a.btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        a.btn:hover { filter: brightness(1.1); }
+        table { width: 100%; border-collapse: collapse; }
+        td { padding: 6px 0; border-bottom: 1px solid var(--border); }
+        td:first-child { color: var(--muted); width: 45%; }
+        code { font-family: var(--mono); background: var(--bg); padding: 2px 6px; border-radius: 4px; }
+        .note { color: var(--muted); font-size: 13px; margin-top: 8px; }
+    </style>
+</head>
+<body>
+    <h1>go2rtc</h1>
+    <div class="sub">Ultimate camera streaming server, running on this Axis device.</div>
+
+    <div class="card">
+        <h2>Web interface</h2>
+        <p style="margin-bottom:14px;">The full go2rtc dashboard (streams, config editor, WebRTC/RTSP players) runs on port <code>1984</code>.</p>
+        <a class="btn" id="open-ui" href="#" target="_blank" rel="noopener">Open go2rtc dashboard</a>
+        <p class="note" id="ui-url"></p>
+    </div>
+
+    <div class="card">
+        <h2>Endpoints</h2>
+        <table>
+            <tr><td>Web UI / HTTP API</td><td><code id="ep-api"></code></td></tr>
+            <tr><td>RTSP server</td><td><code id="ep-rtsp"></code></td></tr>
+            <tr><td>WebRTC</td><td><code id="ep-webrtc"></code></td></tr>
+        </table>
+        <p class="note">Configure streams from the dashboard's <strong>Config</strong> tab. Settings are stored on the device and survive restarts.</p>
+    </div>
+
+    <script>
+        var host = window.location.hostname || 'CAMERA-IP';
+        var apiUrl = 'http://' + host + ':1984/';
+        document.getElementById('open-ui').href = apiUrl;
+        document.getElementById('ui-url').textContent = apiUrl;
+        document.getElementById('ep-api').textContent = host + ':1984';
+        document.getElementById('ep-rtsp').textContent = 'rtsp://' + host + ':8554/';
+        document.getElementById('ep-webrtc').textContent = host + ':8555 (TCP/UDP)';
+    </script>
+</body>
+</html>

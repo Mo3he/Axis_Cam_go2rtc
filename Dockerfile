@@ -29,7 +29,9 @@ RUN case "${ARCH}" in \
     esac && \
     curl -fsSL -o lib/go2rtc \
         "https://github.com/AlexxIT/go2rtc/releases/download/${GO2RTC_VERSION}/go2rtc_linux_${GO2RTC_ARCH}" && \
-    chmod +x lib/go2rtc
+    chmod +x lib/go2rtc && \
+    curl -fsSL -o lib/go2rtc.LICENSE \
+        "https://raw.githubusercontent.com/AlexxIT/go2rtc/${GO2RTC_VERSION}/LICENSE"
 
 # Stamp the architecture into the manifest.
 RUN sed -i "s/@ARCH@/${ARCH}/" manifest.json

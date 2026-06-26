@@ -5,8 +5,8 @@ an Axis camera as an ACAP application. go2rtc is a single, zero-dependency Go
 binary, so it packages cleanly into a native ACAP.
 
 > Independent, community project. Not affiliated with or endorsed by Axis
-> Communications or the go2rtc author. go2rtc is MIT-licensed by Alexey
-> Khrabrov. Use at your own risk.
+> Communications or the go2rtc author. go2rtc is MIT-licensed by Alexey Khit.
+> Use at your own risk.
 
 ## What you get
 
@@ -25,9 +25,14 @@ binary, so it packages cleanly into a native ACAP.
 | RTSP server | `8554` | `rtsp://<camera-ip>:8554/<stream>` |
 | WebRTC | `8555` | TCP/UDP |
 
-These ports are reachable on the camera's network interface. Protect them with
-go2rtc's `username` / `password` settings (see `app/go2rtc.yaml`) and/or the
-camera's network policies if the device is exposed.
+These ports are reachable on the camera's network interface.
+
+> **Security:** by default the Web UI / API on `1984` has no authentication.
+> go2rtc can run shell commands through its source modules, so an open API is
+> effectively remote access to the device. Before exposing the app beyond a
+> trusted network, set `username` / `password` under `api:` in
+> `app/go2rtc.yaml` (and `rtsp:` if you serve RTSP), and prefer a dedicated
+> limited-privilege device account over `root` in your stream URLs.
 
 ## Build
 
@@ -81,6 +86,11 @@ Pick the architecture that matches your camera's chip:
   port `1984`, set `api.base_path` in `go2rtc.yaml` and add a `reverseProxy`
   entry to the manifest. Left out by default to keep direct access simple.
 
-## License
+## Credits and license
 
-MIT for this packaging. go2rtc is MIT-licensed by its author.
+This project packages [go2rtc](https://github.com/AlexxIT/go2rtc) by Alexey
+Khit (MIT). The go2rtc binary is downloaded at build time and its license is
+bundled in the package as `lib/go2rtc.LICENSE`; see [NOTICE.md](NOTICE.md) for
+attribution.
+
+The packaging in this repository is MIT-licensed (see [LICENSE](LICENSE)).

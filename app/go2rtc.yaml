@@ -31,8 +31,8 @@ log:
 # Optional: enables JPEG snapshots and transcoding. Install the separate ffmpeg
 # ACAP (https://github.com/Mo3he/Axis_Cam_ffmpeg) and point go2rtc at its binary.
 # go2rtc only spawns ffmpeg when a stream actually needs it, so it stays modular.
-ffmpeg:
-  bin: /usr/local/packages/ffmpeg/lib/ffmpeg
+# ffmpeg:
+#   bin: /usr/local/packages/ffmpeg/lib/ffmpeg
 
 streams:
   # Re-publish the camera's own RTSP stream. Use a dedicated, limited-privilege

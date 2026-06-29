@@ -89,22 +89,22 @@ Pick the architecture that matches your camera's chip:
 | `app/go2rtc_run` | Seeds the default config into `localdata/` on first run, then `exec`s the go2rtc binary. |
 | `app/go2rtc.yaml` | Default config, copied to the persistent `localdata/` dir once. |
 | `app/lib/go2rtc` | go2rtc binary, downloaded during the Docker build. |
-| `app/lib/` (ffmpeg) | Intentionally absent. No ffmpeg binary is bundled, so ffmpeg-dependent features are disabled (see [Notes](#notes)). |
+| `app/lib/` (ffmpeg) | Not bundled. ffmpeg-dependent features are enabled by installing the separate ffmpeg ACAP (see [Notes](#notes)). |
 | `app/html/index.html` | Settings page with a link to the dashboard. |
 
 ## Notes
 
-- **ffmpeg is not bundled.** To keep the package small and self-contained, no
-  ffmpeg binary ships in `app/lib/`. Anything in go2rtc that shells out to
-  ffmpeg therefore will not work, including JPEG snapshots (`/api/frame.jpeg`),
-  transcoding (for example HEVC to H.264 for browsers that lack HEVC), and any
-  `ffmpeg:` source. Streaming that needs no transcoding works fine: WebRTC, MSE,
-  RTSP, and MP4 pass the camera's H.264 through untouched. If you only need
-  stills, use the camera's native JPEG endpoint
-  (`http://<camera-ip>/axis-cgi/jpg/image.cgi`) instead. To enable ffmpeg
-  features you would have to add an ffmpeg binary to `app/lib/` and put it on
-  the `PATH` in `go2rtc_run` (expect a notably larger package and, for full
-  builds, GPL licensing implications).
+- **ffmpeg is optional and modular.** No ffmpeg binary ships in this package, so
+  it stays small. ffmpeg-dependent features (JPEG snapshots `/api/frame.jpeg`,
+  transcoding such as HEVC to H.264, and any `ffmpeg:` source) are disabled
+  until you install the companion ffmpeg ACAP
+  ([Mo3he/Axis_Cam_ffmpeg](https://github.com/Mo3he/Axis_Cam_ffmpeg), non-root,
+  OS 12+). The seed config already points `ffmpeg.bin` at
+  `/usr/local/packages/ffmpeg/lib/ffmpeg`, so transcoding works automatically
+  once that ACAP is present. Streaming that needs no transcoding works without
+  it: WebRTC, MSE, RTSP, and MP4 pass the camera's H.264 through untouched. For
+  stills only, the camera's native JPEG endpoint
+  (`http://<camera-ip>/axis-cgi/jpg/image.cgi`) also works.
 - WebRTC works best on the local network. For external access, port `8555`
   (TCP/UDP) must be reachable, or configure a TURN server in go2rtc.
 - To serve the dashboard under the camera's own web server suburl instead of

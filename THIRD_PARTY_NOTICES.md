@@ -4,7 +4,7 @@ This ACAP package redistributes the go2rtc streaming server binary.
 
 ## go2rtc
 
-- Project: https://github.com/AlexxIT/go2rtc
+- Project: <https://github.com/AlexxIT/go2rtc>
 - Author: Alexey Khit
 - License: MIT
 
@@ -12,7 +12,7 @@ The go2rtc binary is downloaded at build time and bundled in `app/lib/`. A copy
 of its license is included in the package as `lib/go2rtc.LICENSE`. The full text
 follows.
 
-```
+```text
 MIT License
 
 Copyright (c) 2022 Alexey Khit

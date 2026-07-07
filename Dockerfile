@@ -7,8 +7,8 @@
 #   docker build --build-arg ARCH=armv7hf -t go2rtc-acap:armv7hf .
 
 ARG ARCH=aarch64
-ARG VERSION=1.15.1
-ARG UBUNTU_VERSION=22.04
+ARG VERSION=12.10.0
+ARG UBUNTU_VERSION=24.04
 ARG REPO=axisecp
 ARG SDK=acap-native-sdk
 

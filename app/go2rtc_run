@@ -16,7 +16,7 @@ chmod +x "$BIN" 2>/dev/null || true
 # Seed the default config the first time only; afterwards go2rtc owns this file
 # (it can be edited from the Web UI and is preserved across restarts).
 if [ ! -f "$CONFIG" ]; then
-    cp "$APP_DIR/go2rtc.yaml" "$CONFIG" 2>/dev/null || : > "$CONFIG"
+	cp "$APP_DIR/go2rtc.yaml" "$CONFIG" 2>/dev/null || : >"$CONFIG"
 fi
 
 logger -t "go2rtc" "Starting go2rtc (config=$CONFIG)"

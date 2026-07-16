@@ -8,6 +8,9 @@ binary, so it packages cleanly into a native ACAP.
 > Communications or the go2rtc author. go2rtc is MIT-licensed by Alexey Khit.
 > Use at your own risk.
 
+[![Sponsor](https://img.shields.io/badge/Sponsor%20My%20Work-grey?logo=github)](https://github.com/sponsors/Mo3he)  
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-grey?style=flat&logo=buy-me-a-coffee)](https://www.buymeacoffee.com/mo3he)
+
 ## Use case
 
 Watch the camera live in any modern browser over **WebRTC**, with sub-second

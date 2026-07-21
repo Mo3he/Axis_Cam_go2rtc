@@ -4,8 +4,8 @@
         "setup": {
             "appName": "go2rtc",
             "friendlyName": "go2rtc",
-            "vendor": "Mo3he",
-            "vendorId": "5741c1fb91",
+            "vendor": "moshe@mohome.net",
+            "vendorId": "70ee172dd9",
             "vendorUrl": "https://github.com/Mo3he/Axis_Cam_go2rtc",
             "runMode": "respawn",
             "version": "1.9.14",

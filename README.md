@@ -37,6 +37,15 @@ standards-based WebRTC/HTTP endpoint straight from the device.
 
 ## Installation
 
+> **Signed packages:** Release `.eap` files are signed with the Axis ACAP
+> signing service and install normally on AXIS OS 12.10 and later.
+>
+> **Upgrading from an earlier version?** The signing vendor changed, so
+> installing over a previously installed unsigned build can fail with
+> **"Couldn't install: app"** (device log: *"Vendor ID in manifest does not
+> match the vendor ID of the previous version"*). To upgrade: back up your app
+> configuration, **uninstall** the old version, then install the signed one.
+
 Download the `.eap` from the [latest release](https://github.com/Mo3he/Axis_Cam_go2rtc/releases)
 and install it via the camera's web interface under **Apps -> Add app**, then
 start the app. Click **Open** (or browse to `http://<camera-ip>:1984/`) to reach

@@ -33,6 +33,7 @@ standards-based WebRTC/HTTP endpoint straight from the device.
 ## Compatibility
 
 - **AXIS OS:** 11.x through 13.
+- **Verified on AXIS OS 13** (13.0.0, aarch64).
 - **Architectures:** `aarch64` and `armv7hf`.
 
 ## Installation

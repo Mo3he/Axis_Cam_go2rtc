@@ -1,0 +1,31 @@
+{
+  "app": "go2rtc",
+  "friendlyName": "go2rtc",
+  "versionPolicy": "mirror",
+  "upstream": {
+    "type": "github-release",
+    "repo": "AlexxIT/go2rtc",
+    "stripV": true,
+    "name": "go2rtc",
+    "changesUrl": "https://github.com/AlexxIT/go2rtc/releases/tag/v${UPSTREAM}"
+  },
+  "build": {
+    "command": "./build.sh",
+    "env": {
+      "GO2RTC_VERSION": "v${VERSION}"
+    }
+  },
+  "pins": [
+    {
+      "file": "Dockerfile",
+      "arg": "GO2RTC_VERSION",
+      "prefix": "v"
+    }
+  ],
+  "signing": {
+    "skip": [
+      "*_acap3.eap",
+      "*_root.eap"
+    ]
+  }
+}

@@ -36,6 +36,38 @@ standards-based WebRTC/HTTP endpoint straight from the device.
 - **Verified on AXIS OS 13** (13.0.0, aarch64).
 - **Architectures:** `aarch64` and `armv7hf`.
 
+## HKSV variant
+
+Each release also includes a second package, `go2rtc_HKSV_*.eap`, built from
+[Mo3he/go2rtc](https://github.com/Mo3he/go2rtc) (`hksv` branch) with in-progress
+Apple HomeKit Secure Video support. It installs as a separate app (`go2rtc_hksv`)
+alongside the normal go2rtc app above, using the same default ports, so install
+whichever one you want to run (not both at once). Treat it as experimental;
+binaries track the fork's rolling `hksv-latest` build rather than a pinned
+version.
+
+### Configuring HKSV
+
+This is not a feature of stock go2rtc, so it isn't part of the default
+`go2rtc.yaml` above. To expose a camera to Apple Home as a HomeKit Secure Video
+accessory, add a `homekit:` block to the config (edit it from this app's
+dashboard, same as any other go2rtc setting):
+
+```yaml
+streams:
+  outdoor: rtsp://admin:password@127.0.0.1/axis-media/media.amp
+
+homekit:
+  outdoor:            # same stream ID from streams list
+    hksv: true        # enable HomeKit Secure Video
+    motion: continuous # or detect / onvif / api - see fork docs below
+```
+
+Full options (PIN, motion modes, non-16:9 `recording_resolution`, doorbell
+category, ONVIF motion, the HTTP motion API) are documented in the fork's
+[HomeKit module README](https://github.com/Mo3he/go2rtc/blob/hksv/internal/homekit/README.md),
+not here, since they're fork-specific and change independently of this ACAP.
+
 ## Installation
 
 > **Signed packages:** Release `.eap` files are signed with the Axis ACAP

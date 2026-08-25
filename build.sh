@@ -1,6 +1,8 @@
 #!/bin/sh
 # Build the go2rtc ACAP for one or more architectures and copy the .eap files
-# into the repository root.
+# into the repository root. Also builds the go2rtc HKSV variant (app_hksv/,
+# Dockerfile.hksv), which installs as a separate app (go2rtc_hksv) using
+# binaries from Mo3he/go2rtc's rolling "hksv-latest" release.
 #
 # Usage:
 #   ./build.sh                 # builds aarch64 and armv7hf
@@ -48,4 +50,17 @@ for arch in $ARCHS; do
 	"$RUNTIME" rm "$cid" >/dev/null
 	cp build_"$arch"/*.eap . 2>/dev/null || true
 	echo "==> Done: $(ls build_"$arch"/*.eap 2>/dev/null || echo '(no .eap found)')"
+
+	echo "==> Building go2rtc HKSV ACAP for $arch"
+	"$RUNTIME" build \
+		--build-arg ARCH="$arch" \
+		-f Dockerfile.hksv \
+		-t "go2rtc-hksv-acap:$arch" .
+
+	cid="$("$RUNTIME" create "go2rtc-hksv-acap:$arch")"
+	rm -rf "build_hksv_$arch"
+	"$RUNTIME" cp "$cid:/opt/app" "build_hksv_$arch"
+	"$RUNTIME" rm "$cid" >/dev/null
+	cp build_hksv_"$arch"/*.eap . 2>/dev/null || true
+	echo "==> Done: $(ls build_hksv_"$arch"/*.eap 2>/dev/null || echo '(no .eap found)')"
 done

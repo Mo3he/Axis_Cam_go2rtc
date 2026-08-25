@@ -1,0 +1,23 @@
+{
+    "schemaVersion": "2.0.0",
+    "acapPackageConf": {
+        "setup": {
+            "appName": "go2rtc_hksv",
+            "friendlyName": "go2rtc HKSV",
+            "vendor": "moshe@mohome.net",
+            "vendorId": "70ee172dd9",
+            "vendorUrl": "https://github.com/Mo3he/go2rtc",
+            "runMode": "respawn",
+            "version": "1.9.14",
+            "architecture": "@ARCH@",
+            "compatibleOsVersions": [
+                {
+                    "max": "13"
+                }
+            ]
+        },
+        "configuration": {
+            "settingPage": "index.html"
+        }
+    }
+}

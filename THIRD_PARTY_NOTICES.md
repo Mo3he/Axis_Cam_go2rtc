@@ -12,6 +12,13 @@ The go2rtc binary is downloaded at build time and bundled in `app/lib/`. A copy
 of its license is included in the package as `lib/go2rtc.LICENSE`. The full text
 follows.
 
+## go2rtc HKSV variant
+
+The `go2rtc_hksv` package (`app_hksv/`) bundles a binary built from
+[Mo3he/go2rtc](https://github.com/Mo3he/go2rtc) (`hksv` branch), a fork of the
+same project adding Apple HomeKit Secure Video support. It is licensed under the
+same MIT terms below.
+
 ```text
 MIT License
 

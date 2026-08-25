@@ -1,0 +1,41 @@
+# go2rtc configuration for Axis cameras.
+# Full reference: https://github.com/AlexxIT/go2rtc
+#
+# This file lives in the app's persistent localdata directory and can be edited
+# directly from the go2rtc Web UI (Config tab). Changes survive app restarts and
+# are removed only when the ACAP is uninstalled.
+#
+# SECURITY: by default the API/Web UI on port 1984 is open to anyone who can
+# reach the camera on the network. go2rtc can run shell commands via its source
+# modules, so an open API is effectively remote access to the device. Set a
+# username and password below before exposing this beyond a trusted network.
+
+api:
+  listen: ":1984"        # Web UI / HTTP API (http://<camera-ip>:1984/)
+  # Strongly recommended: require login for the Web UI and API.
+  # username: "admin"
+  # password: "change-me"
+  # origin: "*"          # set explicit origins instead of "*" if you embed the UI
+
+rtsp:
+  listen: ":8554"        # RTSP server (rtsp://<camera-ip>:8554/<stream>)
+  # username: "admin"    # optional auth for RTSP clients
+  # password: "change-me"
+
+webrtc:
+  listen: ":8555"        # WebRTC TCP/UDP
+
+log:
+  level: info            # trace, debug, info (default), warn, error
+
+# Optional: enables JPEG snapshots and transcoding. Install the separate ffmpeg
+# ACAP (https://github.com/Mo3he/Axis_Cam_ffmpeg) and point go2rtc at its binary.
+# go2rtc only spawns ffmpeg when a stream actually needs it, so it stays modular.
+# ffmpeg:
+#   bin: /usr/local/packages/ffmpeg/lib/ffmpeg
+
+streams:
+  # Re-publish the camera's own RTSP stream. Use a dedicated, limited-privilege
+  # device account (not root), then open http://<camera-ip>:1984/ to view it
+  # via WebRTC/MSE.
+  # camera: rtsp://USER:PASS@127.0.0.1:554/axis-media/media.amp

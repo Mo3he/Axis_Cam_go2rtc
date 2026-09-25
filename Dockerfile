@@ -1,7 +1,5 @@
-# Build an Axis ACAP package that bundles the go2rtc streaming server.
-#
-# The go2rtc release binary for the target architecture is downloaded at build
-# time, so no binaries are committed to this repository.
+# Axis ACAP package bundling go2rtc; the release binary is downloaded at build
+# time, so no binaries are committed.
 #
 #   docker build --build-arg ARCH=aarch64 -t go2rtc-acap:aarch64 .
 #   docker build --build-arg ARCH=armv7hf -t go2rtc-acap:armv7hf .
@@ -21,7 +19,6 @@ ARG GO2RTC_VERSION=v1.9.14
 COPY ./app /opt/app/
 WORKDIR /opt/app
 
-# Download the matching go2rtc binary for the target architecture.
 RUN case "${ARCH}" in \
         aarch64) GO2RTC_ARCH=arm64 ;; \
         armv7hf) GO2RTC_ARCH=arm ;; \
@@ -33,7 +30,6 @@ RUN case "${ARCH}" in \
     curl -fsSL -o lib/go2rtc.LICENSE \
         "https://raw.githubusercontent.com/AlexxIT/go2rtc/${GO2RTC_VERSION}/LICENSE"
 
-# Stamp the architecture into the manifest.
 RUN sed -i "s/@ARCH@/${ARCH}/" manifest.json
 
 # Build the supervisor and package the .eap.

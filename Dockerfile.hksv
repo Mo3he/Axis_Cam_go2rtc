@@ -1,11 +1,6 @@
-# Build the go2rtc HKSV variant, published alongside the normal go2rtc ACAP.
-#
-# Uses the go2rtc_hksv appName so it installs side by side with the normal
-# go2rtc app (separate /usr/local/packages dir, same default ports since the
-# two are never meant to run at once). Binaries come from Mo3he/go2rtc's
-# "hksv" branch, which its own CI publishes as a rolling "hksv-latest"
-# release (not a versioned tag) - so this Dockerfile always pulls the latest
-# HKSV build regardless of this repo's own ACAP version number.
+# go2rtc HKSV variant. The go2rtc_hksv appName installs side by side with the
+# normal app (same default ports; never meant to run at once). Binaries come
+# from Mo3he/go2rtc's rolling "hksv-latest" release, not a versioned tag.
 #
 #   docker build --build-arg ARCH=aarch64 -f Dockerfile.hksv -t go2rtc-hksv-acap:aarch64 .
 
@@ -25,7 +20,6 @@ ARG GO2RTC_HKSV_TAG=hksv-latest
 COPY ./app_hksv /opt/app/
 WORKDIR /opt/app
 
-# Download the matching go2rtc HKSV binary for the target architecture.
 RUN case "${ARCH}" in \
         aarch64) GO2RTC_ARCH=arm64 ;; \
         armv7hf) GO2RTC_ARCH=arm ;; \
@@ -37,7 +31,6 @@ RUN case "${ARCH}" in \
     curl -fsSL -o lib/go2rtc.LICENSE \
         "https://raw.githubusercontent.com/${GO2RTC_HKSV_REPO}/${GO2RTC_HKSV_TAG}/LICENSE"
 
-# Stamp the architecture into the manifest.
 RUN sed -i "s/@ARCH@/${ARCH}/" manifest.json
 
 # Build the supervisor and package the .eap.

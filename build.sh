@@ -1,8 +1,6 @@
 #!/bin/sh
-# Build the go2rtc ACAP for one or more architectures and copy the .eap files
-# into the repository root. Also builds the go2rtc HKSV variant (app_hksv/,
-# Dockerfile.hksv), which installs as a separate app (go2rtc_hksv) using
-# binaries from Mo3he/go2rtc's rolling "hksv-latest" release.
+# Build the go2rtc ACAP and its HKSV variant (app_hksv/, Dockerfile.hksv) and
+# copy the .eap files into the repository root.
 #
 # Usage:
 #   ./build.sh                 # builds aarch64 and armv7hf
@@ -12,8 +10,7 @@
 # Override the container runtime with RUNTIME=docker|podman.
 set -eu
 
-# Auto-detect container runtime: prefer docker when its daemon is reachable,
-# otherwise fall back to podman.
+# Prefer docker only when its daemon is reachable, else podman.
 if [ -z "${RUNTIME:-}" ]; then
 	if command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1; then
 		RUNTIME=docker

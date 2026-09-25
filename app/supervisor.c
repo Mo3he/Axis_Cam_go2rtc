@@ -1,12 +1,8 @@
 // SPDX-License-Identifier: MIT
 //
-// Minimal ACAP supervisor for go2rtc.
-//
-// The ACAP main executable (named after the appName, "go2rtc") launches the
-// go2rtc_run shell script, restarts it if it dies, and forwards SIGTERM/SIGINT
-// so the embedded go2rtc binary shuts down cleanly when the app is stopped.
-//
-// Runs as the unprivileged ACAP user. No root, no extra libraries.
+// ACAP main executable: runs go2rtc_run, restarts it if it dies, and forwards
+// SIGTERM/SIGINT so go2rtc shuts down cleanly when the app is stopped.
+// Runs as the unprivileged ACAP user with no extra libraries.
 
 #include <errno.h>
 #include <signal.h>

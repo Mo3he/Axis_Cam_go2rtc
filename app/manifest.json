@@ -1,23 +1,23 @@
 {
-    "schemaVersion": "2.0.0",
-    "acapPackageConf": {
-        "setup": {
-            "appName": "go2rtc",
-            "friendlyName": "go2rtc",
-            "vendor": "moshe@mohome.net",
-            "vendorId": "70ee172dd9",
-            "vendorUrl": "https://github.com/Mo3he/Axis_Cam_go2rtc",
-            "runMode": "respawn",
-            "version": "1.9.14",
-            "architecture": "@ARCH@",
-            "compatibleOsVersions": [
-                {
-                    "max": "13"
-                }
-            ]
-        },
-        "configuration": {
-            "settingPage": "index.html"
+  "schemaVersion": "2.0.0",
+  "acapPackageConf": {
+    "setup": {
+      "appName": "go2rtc",
+      "friendlyName": "go2rtc",
+      "vendor": "moshe@mohome.net",
+      "vendorId": "70ee172dd9",
+      "vendorUrl": "https://github.com/Mo3he/Axis_Cam_go2rtc",
+      "runMode": "respawn",
+      "version": "1.9.15",
+      "architecture": "@ARCH@",
+      "compatibleOsVersions": [
+        {
+          "max": "13"
         }
+      ]
+    },
+    "configuration": {
+      "settingPage": "index.html"
     }
+  }
 }

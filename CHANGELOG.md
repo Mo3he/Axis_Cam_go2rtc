@@ -5,6 +5,10 @@ links to its full release notes on GitHub.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
+## 1.9.15 - 2026-10-26
+
+- Update to upstream 1.9.15.
+
 ## [1.9.14-Signed] - 2026-07-21 - go2rtc 1.9.14 (Signed)
 
 - Packages are now signed with the Axis ACAP signing service and install

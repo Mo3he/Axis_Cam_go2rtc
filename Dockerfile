@@ -14,7 +14,7 @@ FROM ${REPO}/${SDK}:${VERSION}-${ARCH}-ubuntu${UBUNTU_VERSION}
 
 # Re-declare after FROM so the args are available in the build stage.
 ARG ARCH
-ARG GO2RTC_VERSION=v1.9.14
+ARG GO2RTC_VERSION=v1.9.15
 
 COPY ./app /opt/app/
 WORKDIR /opt/app

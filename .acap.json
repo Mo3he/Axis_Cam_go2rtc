@@ -12,7 +12,7 @@
   "build": {
     "command": "./build.sh",
     "env": {
-      "GO2RTC_VERSION": "v${VERSION}"
+      "GO2RTC_VERSION": "v${UPSTREAM}"
     }
   },
   "pins": [

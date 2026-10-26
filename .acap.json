@@ -22,6 +22,28 @@
       "prefix": "v"
     }
   ],
+  "forks": [
+    {
+      "note": "HKSV variant: the fork adds HomeKit Secure Video. Its release-arm.yml normally builds hksv-latest; acap-build.sh does the same locally.",
+      "repo": "Mo3he/go2rtc",
+      "branch": "hksv",
+      "upstream": "AlexxIT/go2rtc",
+      "upstreamTag": "v${UPSTREAM}",
+      "release": "hksv-latest",
+      "test": "go test ./...",
+      "build": "go build -trimpath -ldflags='-s -w' -o \"$ASSET\" .",
+      "assets": [
+        {
+          "name": "go2rtc_linux_arm64",
+          "env": { "GOOS": "linux", "GOARCH": "arm64", "CGO_ENABLED": "0" }
+        },
+        {
+          "name": "go2rtc_linux_arm",
+          "env": { "GOOS": "linux", "GOARCH": "arm", "GOARM": "7", "CGO_ENABLED": "0" }
+        }
+      ]
+    }
+  ],
   "signing": {
     "skip": [
       "*_acap3.eap",

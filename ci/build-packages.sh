@@ -14,9 +14,6 @@ COMMAND=$(cfg '.build.command')
 
 while IFS=$'\t' read -r key value; do
 	[ -n "$key" ] || continue
-	# ${UPSTREAM} is the upstream release being packaged; it differs from
-	# ${VERSION} once our version runs ahead of upstream (patch bumps).
-	value=${value//\$\{UPSTREAM\}/${UPSTREAM_VERSION:-${VERSION:-}}}
 	value=${value//\$\{VERSION\}/${VERSION:-}}
 	export "$key=$value"
 	echo "env $key=$value"

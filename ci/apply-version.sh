@@ -17,13 +17,14 @@ cfg() { jq -r "$1" "$CONFIG"; }
 
 IFS='.' read -r MAJOR MINOR MICRO <<<"$VERSION"
 
+# app_hksv/ ships in the same release, so it carries the same version.
 while IFS= read -r manifest; do
 	[ -n "$manifest" ] || continue
 	tmp=$(mktemp)
 	jq --arg v "$VERSION" '.acapPackageConf.setup.version = $v' "$manifest" >"$tmp"
 	mv "$tmp" "$manifest"
 	echo "version $VERSION -> $manifest"
-done < <(find . -path '*/app/manifest.json' -not -path './node_modules/*' | sort)
+done < <(find . \( -path '*/app/manifest.json' -o -path './app_hksv/manifest.json' \) -not -path './node_modules/*' | sort)
 
 while IFS= read -r conf; do
 	[ -n "$conf" ] || continue

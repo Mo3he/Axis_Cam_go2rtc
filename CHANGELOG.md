@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ## 1.9.15 - 2026-10-26
 
 - Update to upstream 1.9.15.
+- HKSV variant: merged upstream 1.9.15 into the HKSV fork, labelled 1.9.15,
+  and rebuilt with Go 1.27.3 (the first 1.9.15 HKSV build carried 17 Go
+  standard library vulnerabilities).
 
 ## [1.9.14-Signed] - 2026-07-21 - go2rtc 1.9.14 (Signed)
 
